@@ -26,7 +26,7 @@ export const Footer: React.FC = () => {
       </div>
 
       {/* Main Footer CTA */}
-      <div className="container mx-auto px-6 py-16 md:py-24 border-b border-gray-200 relative z-10">
+      <div className="container mx-auto px-6 py-12 md:py-24 border-b border-gray-200 relative z-10">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
           <div>
              <h3 className="font-serif text-3xl md:text-5xl font-bold text-paper-black mb-4">
@@ -44,7 +44,7 @@ export const Footer: React.FC = () => {
       </div>
 
       {/* Bottom Bar */}
-      <div className="container mx-auto px-6 py-12 flex flex-col md:flex-row justify-between items-center relative z-10 gap-8">
+      <div className="container mx-auto px-6 py-8 md:py-12 flex flex-col md:flex-row justify-between items-center relative z-10 gap-8">
         <div className="mb-8 md:mb-0 text-center md:text-left">
           <a href="#" className="font-serif text-2xl font-black tracking-tight text-paper-black block mb-2">
             Paperly Studio

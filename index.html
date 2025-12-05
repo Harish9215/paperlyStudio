@@ -57,12 +57,18 @@
         background-color: #f9f9f7; /* paper-cream */
         color: #1a1a1a; /* paper-black */
         position: relative;
-        cursor: none; /* Hiding default cursor for the custom one */
+        /* Custom cursor logic moved to media query below */
+      }
+      
+      @media (min-width: 768px) {
+        body {
+          cursor: none; /* Only hide default cursor on non-touch devices */
+        }
       }
       
       /* Ensure links still show pointer if custom cursor fails or for accessibility fallbacks */
       a, button {
-        cursor: none; 
+        /* cursor: none; Handled by media query generally */ 
       }
 
       .hide-scrollbar::-webkit-scrollbar {

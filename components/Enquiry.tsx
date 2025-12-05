@@ -36,15 +36,15 @@ export const Enquiry: React.FC = () => {
   };
 
   return (
-    <section id="consultation" className="py-24 md:py-32 bg-white text-paper-black relative border-t border-gray-100">
+    <section id="consultation" className="py-16 md:py-32 bg-white text-paper-black relative border-t border-gray-100">
        <div className="container mx-auto px-6 max-w-6xl">
           <FadeIn>
             <div className="text-center mb-16 md:mb-24">
                <span className="text-paper-gold font-bold tracking-[0.2em] uppercase text-xs mb-4 block">Get in Touch</span>
-               <h2 className="font-serif text-5xl md:text-7xl font-medium text-paper-black mb-6">
+               <h2 className="font-serif text-4xl md:text-5xl lg:text-7xl font-medium text-paper-black mb-6">
                  Start a Conversation.
                </h2>
-               <p className="text-gray-500 text-xl font-light max-w-2xl mx-auto">
+               <p className="text-gray-500 text-lg md:text-xl font-light max-w-2xl mx-auto">
                  Whether you have a fully fleshed-out idea or just a spark of inspiration, we're here to help you build it.
                </p>
             </div>

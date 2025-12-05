@@ -28,7 +28,7 @@ export const CustomCursor: React.FC = () => {
   return (
     <div 
       ref={cursorRef}
-      className={`fixed top-0 left-0 w-8 h-8 rounded-full pointer-events-none z-[9999] mix-blend-difference transition-all duration-150 ease-out flex items-center justify-center ${
+      className={`hidden md:flex fixed top-0 left-0 w-8 h-8 rounded-full pointer-events-none z-[9999] mix-blend-difference transition-all duration-150 ease-out items-center justify-center ${
         isHovering ? 'scale-[2.5] bg-white' : 'scale-100 bg-white'
       }`}
       style={{ marginTop: '-1rem', marginLeft: '-1rem' }}

@@ -77,13 +77,13 @@ export const Partnerships: React.FC = () => {
   };
 
   return (
-    <section id="partnerships" className="py-32 bg-paper-cream relative z-10">
+    <section id="partnerships" className="py-16 md:py-32 bg-paper-cream relative z-10">
       <div className="container mx-auto px-6">
         <FadeIn>
-          <div className="flex flex-col md:flex-row justify-between items-end mb-20 pb-6 border-b-4 border-paper-black">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-12 md:mb-20 pb-6 border-b-4 border-paper-black">
             <div>
               <h2 className="text-sm font-bold tracking-[0.3em] uppercase text-paper-gold mb-2">Engagement Models</h2>
-              <h3 className="font-serif text-5xl md:text-7xl font-black text-paper-black uppercase leading-[0.9]">
+              <h3 className="font-serif text-4xl md:text-5xl lg:text-7xl font-black text-paper-black uppercase leading-[0.9]">
                 Choose Your <br/> Framework.
               </h3>
             </div>
@@ -104,7 +104,7 @@ export const Partnerships: React.FC = () => {
                 {/* Hover Background */}
                 <div className="absolute inset-0 bg-paper-black transform scale-y-0 origin-bottom group-hover:scale-y-100 transition-transform duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] z-0"></div>
 
-                <div className="relative z-10 flex flex-col lg:flex-row py-12 lg:items-center gap-8 lg:gap-12 group-hover:text-white transition-colors duration-300 px-4 lg:px-8">
+                <div className="relative z-10 flex flex-col lg:flex-row py-8 md:py-12 lg:items-center gap-6 lg:gap-12 group-hover:text-white transition-colors duration-300 px-4 lg:px-8">
                   
                   {/* ID */}
                   <div className="font-mono text-sm md:text-base text-paper-gold font-bold tracking-widest opacity-80 group-hover:text-paper-gold">
@@ -113,7 +113,7 @@ export const Partnerships: React.FC = () => {
 
                   {/* Title Section */}
                   <div className="lg:w-1/3">
-                    <h4 className="font-serif text-4xl md:text-6xl font-black uppercase tracking-tight leading-none mb-2">
+                    <h4 className="font-serif text-3xl md:text-4xl lg:text-6xl font-black uppercase tracking-tight leading-none mb-2">
                       {model.title}
                     </h4>
                     <span className="inline-block px-2 py-1 border border-paper-charcoal group-hover:border-gray-600 rounded-sm text-xs font-bold uppercase tracking-[0.2em] group-hover:bg-gray-800 group-hover:text-white transition-all">
@@ -123,7 +123,7 @@ export const Partnerships: React.FC = () => {
 
                   {/* Description Section */}
                   <div className="lg:w-1/3">
-                    <p className="text-lg md:text-xl font-medium leading-relaxed opacity-80 group-hover:opacity-100">
+                    <p className="text-base md:text-xl font-medium leading-relaxed opacity-80 group-hover:opacity-100">
                       {model.description}
                     </p>
                   </div>
@@ -142,7 +142,7 @@ export const Partnerships: React.FC = () => {
                        <span className="font-mono text-xs text-paper-gold uppercase tracking-widest group-hover:text-white">Est. {model.turnaround}</span>
                        
                        {/* Button hidden until hover - CHANGED from Icon to Button with Text */}
-                       <div className="opacity-0 group-hover:opacity-100 bg-white text-paper-black px-6 py-2 rounded-full flex items-center gap-3 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0 shadow-lg">
+                       <div className="lg:opacity-0 group-hover:opacity-100 bg-white text-paper-black px-6 py-2 rounded-full flex items-center gap-3 transition-all duration-500 transform lg:translate-y-4 group-hover:translate-y-0 shadow-lg border border-gray-200 lg:border-none">
                           <span className="text-xs font-bold uppercase tracking-widest">View Details</span>
                           <ArrowUpRight size={16} />
                        </div>
@@ -156,7 +156,7 @@ export const Partnerships: React.FC = () => {
         </div>
 
         <FadeIn delay={400}>
-            <div className="mt-20 flex justify-center">
+            <div className="mt-12 md:mt-20 flex justify-center">
                 <Button onClick={scrollToConsultation} variant="outline" className="shadow-[8px_8px_0px_0px_rgba(26,26,26,1)] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] border-2 border-paper-black bg-white text-paper-black hover:bg-paper-black hover:text-white">
                     Start Your Project
                 </Button>
@@ -181,7 +181,7 @@ export const Partnerships: React.FC = () => {
                 <div className="bg-paper-black text-white p-8 md:p-12 md:w-1/3 flex flex-col justify-between">
                     <div>
                         <div className="text-paper-gold font-mono text-sm tracking-widest mb-4">/{selectedModel.id}</div>
-                        <h2 className="font-serif text-5xl font-black uppercase leading-none mb-4">{selectedModel.title}</h2>
+                        <h2 className="font-serif text-4xl md:text-5xl font-black uppercase leading-none mb-4">{selectedModel.title}</h2>
                         <div className="inline-block px-3 py-1 border border-gray-600 text-xs font-bold uppercase tracking-widest mb-8">
                             {selectedModel.idealFor}
                         </div>

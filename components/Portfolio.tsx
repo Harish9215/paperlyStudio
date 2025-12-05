@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { PortfolioItem } from '../types';
 import { FadeIn } from './FadeIn';
-import { ArrowUpRight, Zap, X } from 'lucide-react';
+import { ArrowUpRight, Zap, X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const portfolioItems: (PortfolioItem & { aspect: string })[] = [
   {
@@ -80,21 +80,39 @@ export const Portfolio: React.FC = () => {
     };
   }, [selectedItem]);
 
+  const handleNext = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    const currentIndex = portfolioItems.findIndex(item => item.id === selectedItem?.id);
+    const nextIndex = (currentIndex + 1) % portfolioItems.length;
+    setSelectedItem(portfolioItems[nextIndex]);
+    const modal = document.querySelector('.modal-scroll-container');
+    if(modal) modal.scrollTop = 0;
+  };
+
+  const handlePrev = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    const currentIndex = portfolioItems.findIndex(item => item.id === selectedItem?.id);
+    const prevIndex = (currentIndex - 1 + portfolioItems.length) % portfolioItems.length;
+    setSelectedItem(portfolioItems[prevIndex]);
+    const modal = document.querySelector('.modal-scroll-container');
+    if(modal) modal.scrollTop = 0;
+  };
+
   return (
-    <section id="portfolio" className="relative pt-32 pb-32 bg-paper-cream overflow-hidden">
+    <section id="portfolio" className="relative pt-16 pb-16 md:pt-32 md:pb-32 bg-paper-cream overflow-hidden">
        {/* Funky Background Element */}
        <div className="absolute top-20 right-0 w-64 h-64 bg-paper-gold/10 rounded-full blur-3xl -z-0 pointer-events-none mix-blend-multiply"></div>
        <div className="absolute bottom-40 left-0 w-96 h-96 bg-paper-secondary/10 rounded-full blur-3xl -z-0 pointer-events-none mix-blend-multiply"></div>
 
       <div className="container mx-auto px-6 relative z-10">
         <FadeIn>
-          <div className="flex flex-col md:flex-row justify-between items-end mb-24 pb-8 border-b-4 border-paper-black">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-16 md:mb-24 pb-8 border-b-4 border-paper-black">
             <div>
               <div className="flex items-center space-x-2 mb-2">
                  <Zap size={20} className="text-paper-gold fill-current" />
                  <h2 className="text-sm font-black tracking-[0.2em] uppercase text-paper-secondary">Our Collections</h2>
               </div>
-              <h3 className="font-serif text-6xl md:text-8xl font-black text-paper-black tracking-tighter leading-[0.9]">
+              <h3 className="font-serif text-5xl md:text-8xl font-black text-paper-black tracking-tighter leading-[0.9]">
                 Signature <br/> <span className="text-transparent bg-clip-text bg-gradient-to-r from-paper-gold to-paper-gold/60">Drops.</span>
               </h3>
             </div>
@@ -105,7 +123,7 @@ export const Portfolio: React.FC = () => {
         </FadeIn>
 
         {/* Masonry Layout via CSS Columns */}
-        <div className="columns-1 md:columns-2 gap-12 space-y-24">
+        <div className="columns-1 md:columns-2 gap-12 space-y-12 md:space-y-24">
           {portfolioItems.map((item, index) => (
             <div
               key={item.id}
@@ -166,7 +184,7 @@ export const Portfolio: React.FC = () => {
         </div>
 
         <FadeIn delay={200}>
-          <div className="mt-32 flex justify-center">
+          <div className="mt-20 md:mt-32 flex justify-center">
             <a href="#" className="relative inline-flex items-center justify-center px-12 py-5 overflow-hidden font-bold text-white transition-all duration-300 bg-paper-black group hover:bg-paper-secondary">
               <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-paper-gold rounded-full group-hover:w-80 group-hover:h-80 opacity-20"></span>
               <span className="relative text-lg tracking-widest uppercase">View All Works</span>
@@ -177,78 +195,96 @@ export const Portfolio: React.FC = () => {
 
       {/* Full Screen Gallery Modal */}
       {selectedItem && (
-        <div className="fixed inset-0 z-[100] bg-paper-cream animate-modal-enter overflow-y-auto">
+        <div className="fixed inset-0 z-[100] bg-paper-cream animate-modal-enter overflow-hidden flex flex-col">
           {/* Sticky Header */}
-          <div className="sticky top-0 left-0 right-0 bg-paper-cream/95 backdrop-blur-md border-b-2 border-paper-black px-6 py-3 flex justify-between items-center z-[101]">
+          <div className="bg-paper-cream/95 backdrop-blur-md border-b-2 border-paper-black px-4 md:px-6 py-3 flex justify-between items-center z-[101] shrink-0">
              <div className="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-4 opacity-0 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
-                <h2 className="font-serif text-3xl md:text-5xl font-black text-paper-black uppercase leading-none">
+                <h2 className="font-serif text-2xl md:text-5xl font-black text-paper-black uppercase leading-none truncate max-w-[200px] md:max-w-none">
                   {selectedItem.title}
                 </h2>
-                <span className="text-xs md:text-sm font-bold tracking-[0.2em] text-paper-secondary uppercase bg-paper-secondary/10 px-2 py-1">
+                <span className="text-xs md:text-sm font-bold tracking-[0.2em] text-paper-secondary uppercase bg-paper-secondary/10 px-2 py-1 hidden sm:inline-block">
                   The Full Family
                 </span>
              </div>
              
-             <button 
-                onClick={() => setSelectedItem(null)} 
-                className="group flex items-center gap-3 hover:text-paper-gold transition-colors opacity-0 animate-fade-in-up"
-                style={{ animationDelay: '0.1s' }}
-             >
-                <span className="hidden md:block font-bold tracking-widest uppercase text-sm">Back to Portfolio</span>
-                <div className="w-10 h-10 md:w-12 md:h-12 bg-paper-black text-white flex items-center justify-center rounded-full group-hover:bg-paper-gold group-hover:rotate-90 transition-all duration-300">
-                   <X size={20} strokeWidth={3} />
-                </div>
-             </button>
+             <div className="flex items-center gap-4">
+                 {/* Navigation Controls */}
+                 <div className="hidden md:flex items-center gap-2 mr-4 opacity-0 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+                    <button onClick={handlePrev} className="w-10 h-10 border border-gray-300 flex items-center justify-center hover:bg-paper-black hover:text-white transition-colors rounded-sm">
+                        <ChevronLeft size={20} />
+                    </button>
+                    <button onClick={handleNext} className="w-10 h-10 border border-gray-300 flex items-center justify-center hover:bg-paper-black hover:text-white transition-colors rounded-sm">
+                        <ChevronRight size={20} />
+                    </button>
+                 </div>
+
+                 <button 
+                    onClick={() => setSelectedItem(null)} 
+                    className="group flex items-center gap-3 hover:text-paper-gold transition-colors opacity-0 animate-fade-in-up"
+                    style={{ animationDelay: '0.1s' }}
+                 >
+                    <span className="hidden md:block font-bold tracking-widest uppercase text-sm">Close</span>
+                    <div className="w-10 h-10 md:w-12 md:h-12 bg-paper-black text-white flex items-center justify-center rounded-full group-hover:bg-paper-gold group-hover:rotate-90 transition-all duration-300">
+                    <X size={20} strokeWidth={3} />
+                    </div>
+                 </button>
+             </div>
           </div>
 
-          {/* Gallery Content */}
-          <div className="max-w-6xl mx-auto px-6 py-8 md:py-12">
-             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-                
-                {/* Main Hero Image */}
-                <div className="md:col-span-2 mb-6 opacity-0 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-                   <div className="w-full h-[50vh] md:h-[65vh] bg-gray-200 overflow-hidden relative group">
-                      <img 
-                        src={selectedItem.imageUrl} 
-                        alt={selectedItem.title} 
-                        className="w-full h-full object-cover"
-                      />
-                      <div className="absolute bottom-6 left-6 bg-white px-4 py-2 font-serif font-bold text-xl uppercase tracking-wider">
-                         Primary View
-                      </div>
-                   </div>
-                </div>
+          {/* Gallery Content - Scrollable */}
+          <div className="modal-scroll-container overflow-y-auto flex-grow">
+            <div className="max-w-6xl mx-auto px-4 md:px-6 py-8 md:py-12">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                    
+                    {/* Main Hero Image */}
+                    <div className="md:col-span-2 mb-6 opacity-0 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+                    <div className="w-full h-[40vh] md:h-[65vh] bg-gray-200 overflow-hidden relative group">
+                        <img 
+                            src={selectedItem.imageUrl} 
+                            alt={selectedItem.title} 
+                            className="w-full h-full object-cover"
+                        />
+                        <div className="absolute bottom-6 left-6 bg-white px-4 py-2 font-serif font-bold text-xl uppercase tracking-wider">
+                            Primary View
+                        </div>
+                    </div>
+                    </div>
 
-                {/* Secondary Gallery Grid */}
-                {selectedItem.galleryImages.map((img, idx) => (
-                   <div 
-                      key={idx} 
-                      className="aspect-[4/5] md:aspect-square bg-gray-100 overflow-hidden relative group cursor-pointer opacity-0 animate-fade-in-up"
-                      style={{ animationDelay: `${0.3 + (idx * 0.1)}s` }}
-                   >
-                      <img 
-                        src={img} 
-                        alt={`${selectedItem.title} detail ${idx + 1}`} 
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                      />
-                      {/* Hover Overlay */}
-                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300"></div>
-                      <div className="absolute top-4 right-4 bg-paper-black text-white text-xs font-bold w-8 h-8 flex items-center justify-center rounded-full opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
-                         {idx + 1}
-                      </div>
-                   </div>
-                ))}
-             </div>
-             
-             {/* Bottom Navigation / Close */}
-             <div className="mt-16 text-center opacity-0 animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
-                <button 
-                  onClick={() => setSelectedItem(null)}
-                  className="inline-flex items-center justify-center px-12 py-4 border-2 border-paper-black font-bold uppercase tracking-widest hover:bg-paper-black hover:text-white transition-colors duration-300"
-                >
-                   Close Gallery
-                </button>
-             </div>
+                    {/* Secondary Gallery Grid */}
+                    {selectedItem.galleryImages.map((img, idx) => (
+                    <div 
+                        key={idx} 
+                        className="aspect-[4/5] md:aspect-square bg-gray-100 overflow-hidden relative group cursor-pointer opacity-0 animate-fade-in-up"
+                        style={{ animationDelay: `${0.3 + (idx * 0.1)}s` }}
+                    >
+                        <img 
+                            src={img} 
+                            alt={`${selectedItem.title} detail ${idx + 1}`} 
+                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        />
+                        {/* Hover Overlay */}
+                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300"></div>
+                        <div className="absolute top-4 right-4 bg-paper-black text-white text-xs font-bold w-8 h-8 flex items-center justify-center rounded-full opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                            {idx + 1}
+                        </div>
+                    </div>
+                    ))}
+                </div>
+                
+                {/* Bottom Navigation / Close */}
+                <div className="mt-16 pb-16 text-center opacity-0 animate-fade-in-up space-y-6" style={{ animationDelay: '0.6s' }}>
+                    <div className="flex justify-center gap-4 md:hidden">
+                        <button onClick={handlePrev} className="px-6 py-3 border border-gray-300 font-bold uppercase tracking-widest hover:bg-paper-black hover:text-white transition-colors">Prev</button>
+                        <button onClick={handleNext} className="px-6 py-3 border border-gray-300 font-bold uppercase tracking-widest hover:bg-paper-black hover:text-white transition-colors">Next</button>
+                    </div>
+                    <button 
+                    onClick={() => setSelectedItem(null)}
+                    className="inline-flex items-center justify-center px-12 py-4 border-2 border-paper-black font-bold uppercase tracking-widest hover:bg-paper-black hover:text-white transition-colors duration-300"
+                    >
+                    Close Gallery
+                    </button>
+                </div>
+            </div>
           </div>
         </div>
       )}

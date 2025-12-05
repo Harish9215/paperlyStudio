@@ -10,7 +10,7 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
   return (
-    <section id="home" className="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden bg-paper-cream">
+    <section id="home" className="relative h-screen min-h-[85vh] md:min-h-[700px] flex items-center justify-center overflow-hidden bg-paper-cream">
       {/* Parallax Background */}
       <ParallaxBackground 
         imageUrl="https://images.unsplash.com/photo-1586075010925-12dd51556046?q=80&w=2500&auto=format&fit=crop"
@@ -28,7 +28,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
         </FadeIn>
         
         <FadeIn delay={200}>
-          <h1 className="font-serif text-5xl md:text-7xl lg:text-9xl text-paper-black leading-[0.95] mb-8 font-black tracking-tighter">
+          <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-9xl text-paper-black leading-[0.95] mb-8 font-black tracking-tighter">
             UNBOXING <br />
             IS <span className="text-paper-gold">ART.</span>
           </h1>

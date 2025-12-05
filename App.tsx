@@ -19,14 +19,14 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col font-sans selection:bg-paper-gold selection:text-white cursor-none">
+    <div className="min-h-screen flex flex-col font-sans selection:bg-paper-gold selection:text-white overflow-x-hidden">
       <CustomCursor />
       <Header onNavigate={scrollToSection} />
       <main className="flex-grow">
         <Hero onNavigate={scrollToSection} />
         <Marquee />
-        <Partnerships />
         <Services />
+        <Partnerships />
         <Process />
         <Portfolio />
         <Enquiry />

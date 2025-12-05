@@ -46,22 +46,22 @@ export const Process: React.FC = () => {
   };
 
   return (
-    <section id="process" className="py-32 bg-paper-black text-white relative min-h-screen flex flex-col justify-center">
+    <section id="process" className="py-16 md:py-32 bg-paper-black text-white relative min-h-screen flex flex-col justify-center">
       
       <div className="container mx-auto px-6 relative z-10">
         <FadeIn>
-          <div className="mb-24 text-center max-w-4xl mx-auto">
+          <div className="mb-16 md:mb-24 text-center max-w-4xl mx-auto">
                <span className="text-paper-gold font-bold tracking-[0.2em] uppercase text-xs md:text-sm mb-4 block">The Methodology</span>
-               <h2 className="font-serif text-5xl md:text-7xl font-medium text-white mb-8">
+               <h2 className="font-serif text-4xl md:text-5xl lg:text-7xl font-medium text-white mb-8">
                  From Abstract to <span className="text-gray-500 italic font-serif">Concrete.</span>
                </h2>
-               <p className="text-gray-300 text-xl font-light leading-relaxed max-w-2xl mx-auto">
+               <p className="text-gray-300 text-lg md:text-xl font-light leading-relaxed max-w-2xl mx-auto">
                  A refined workflow designed for clarity, precision, and excellence.
                </p>
           </div>
         </FadeIn>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12 md:gap-y-16">
           {steps.map((step, index) => (
             <FadeIn key={index} delay={index * 100} className="h-full">
               <div className="group relative h-full flex flex-col border-t border-gray-800 pt-8 hover:border-paper-gold transition-colors duration-500">
@@ -101,7 +101,7 @@ export const Process: React.FC = () => {
         </div>
 
         <FadeIn delay={500}>
-            <div className="mt-24 flex justify-center">
+            <div className="mt-16 md:mt-24 flex justify-center">
                 <Button 
                     onClick={scrollToConsultation} 
                     variant="primary" 
