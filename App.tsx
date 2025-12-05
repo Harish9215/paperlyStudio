@@ -6,7 +6,7 @@ import { Services } from './components/Services';
 import { Partnerships } from './components/Partnerships';
 import { Process } from './components/Process';
 import { Portfolio } from './components/Portfolio';
-import { AIConsultant } from './components/AIConsultant';
+import { Enquiry } from './components/Enquiry';
 import { Footer } from './components/Footer';
 import { CustomCursor } from './components/CustomCursor';
 
@@ -29,7 +29,7 @@ function App() {
         <Services />
         <Process />
         <Portfolio />
-        <AIConsultant />
+        <Enquiry />
       </main>
       <Footer />
     </div>
