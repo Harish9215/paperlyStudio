@@ -1,101 +1,38 @@
 import React from 'react';
-import { ShoppingBag, Package, Gift, Truck, Check } from 'lucide-react';
-import { ServiceItem } from '../types';
 import { FadeIn } from './FadeIn';
-
-const services: ServiceItem[] = [
-  {
-    id: '1',
-    title: 'Fresh Pack',
-    description: 'Gourmet Bags — Too good to be just a bag.',
-    features: [
-      'Food-safe & grease-resistant barriers.',
-      'Custom windows to showcase freshness.',
-      'Heat-sealable for prolonged shelf life.'
-    ],
-    icon: <ShoppingBag className="w-8 h-8" />,
-  },
-  {
-    id: '2',
-    title: 'Smart-Fold',
-    description: 'Retail Cartons — Ready in a snap.',
-    features: [
-      'Auto-lock bottoms for rapid assembly.',
-      'High-impact visual canvas for retail.',
-      'Folds completely flat for storage efficiency.'
-    ],
-    icon: <Package className="w-8 h-8" />,
-  },
-  {
-    id: '3',
-    title: 'Keepsake Box',
-    description: 'Rigid Luxury — Branding that lasts.',
-    features: [
-      'Heavyweight rigid board construction.',
-      'Magnetic closures & ribbon pulls.',
-      'Heirloom quality meant for reuse.'
-    ],
-    icon: <Gift className="w-8 h-8" />,
-  },
-  {
-    id: '4',
-    title: 'The Voyager',
-    description: 'Shipping Mailers — Arrive in style.',
-    features: [
-      'Impact-resistant corrugated fluting.',
-      'Branded interior reveal experience.',
-      'Tamper-evident self-sealing strips.'
-    ],
-    icon: <Truck className="w-8 h-8" />,
-  },
-];
 
 export const Services: React.FC = () => {
   return (
-    <section id="services" className="pt-32 pb-24 bg-white min-h-screen">
-      <div className="container mx-auto px-6">
-        <FadeIn>
-          <div className="mb-16 md:mb-24 flex flex-col md:flex-row md:items-end justify-between border-b-4 border-paper-gold/20 pb-8">
-            <div className="max-w-2xl">
-              <h2 className="text-sm font-black tracking-[0.2em] uppercase text-paper-gold mb-4">Our Product Lines</h2>
-              <h3 className="font-serif text-5xl md:text-6xl font-black text-paper-black">
-                Engineered for <br /> <span className="text-paper-secondary">the moment.</span>
-              </h3>
-            </div>
-            <p className="mt-6 md:mt-0 text-paper-charcoal max-w-md font-medium text-lg">
-              From fresh bakery treats to luxury keepsakes, our specialized product lines ensure your brand is delivered perfectly, every time.
-            </p>
-          </div>
-        </FadeIn>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {services.map((service, index) => (
-            <FadeIn key={service.id} delay={index * 150} className="h-full">
-              <div className="group p-8 border-2 border-gray-100 hover:border-paper-black transition-all duration-300 bg-paper-cream hover:bg-white hover:shadow-[8px_8px_0px_0px_rgba(255,107,53,0.3)] h-full relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-24 h-24 bg-paper-gold/5 rounded-bl-full -mr-10 -mt-10 group-hover:bg-paper-gold/10 transition-colors"></div>
-                
-                <div className="mb-8 text-paper-secondary group-hover:text-paper-gold transition-colors duration-300 transform group-hover:scale-110 origin-left">
-                  {service.icon}
-                </div>
-                <h4 className="font-serif text-2xl font-black mb-4 text-paper-black uppercase tracking-tight">
-                  {service.title}
-                </h4>
-                <p className="text-paper-secondary text-sm font-bold italic mb-6 border-b-2 border-gray-200 pb-6">
-                  {service.description}
-                </p>
-                <ul className="space-y-3">
-                  {service.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-start text-sm text-gray-600">
-                      <Check size={16} className="mt-0.5 mr-2 text-paper-gold shrink-0 font-bold" />
-                      <span className="leading-tight font-semibold">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </FadeIn>
-          ))}
-        </div>
+    <section id="services" className="relative bg-paper-cream text-paper-black py-32 md:py-48 px-6 min-h-[50vh] flex items-center justify-center overflow-hidden border-b border-gray-200">
+      
+      {/* Giant Watermark Background */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center pointer-events-none select-none z-0">
+         <span className="font-serif font-black text-[12vw] leading-none text-paper-black opacity-[0.03] uppercase tracking-tighter">
+            Elevated
+         </span>
+         <br/>
+         <span className="font-serif font-black text-[12vw] leading-none text-transparent opacity-[0.05] uppercase tracking-tighter" style={{ WebkitTextStroke: '2px #1a1a1a' }}>
+            Minimalism
+         </span>
       </div>
+
+      <FadeIn>
+        <div className="container mx-auto max-w-4xl text-center relative z-10">
+            <div className="mb-8 flex justify-center">
+               <div className="w-px h-16 bg-paper-gold"></div>
+            </div>
+            
+            <p className="font-serif text-3xl md:text-5xl lg:text-6xl leading-[1.1] font-medium text-paper-black mb-10">
+              "Minimalism is not about taking things away. It’s about adding the <span className="italic text-paper-secondary font-serif">right amount</span> of nothing."
+            </p>
+            
+            <div className="flex items-center justify-center space-x-4">
+               <div className="h-px w-8 bg-paper-charcoal"></div>
+               <span className="text-xs font-bold tracking-[0.3em] uppercase text-paper-charcoal">The Paperly Philosophy</span>
+               <div className="h-px w-8 bg-paper-charcoal"></div>
+            </div>
+        </div>
+      </FadeIn>
     </section>
   );
 };

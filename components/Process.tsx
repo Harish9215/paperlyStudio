@@ -1,72 +1,88 @@
 import React from 'react';
 import { FadeIn } from './FadeIn';
-import { Scissors } from 'lucide-react';
+import { GitCommit, PenTool, Box, Truck } from 'lucide-react';
 
 const steps = [
   {
     number: '01',
     title: 'Discovery & Strategy',
-    description: 'We begin by immersing ourselves in your brand ethos and market positioning to define a strategic roadmap. This foundational phase ensures every design decision is rooted in your business objectives and appeals directly to your target demographic.'
+    icon: <GitCommit size={32} />,
+    description: 'We decode your brand DNA. Through market analysis and aesthetic auditing, we define a strategic roadmap that aligns structural form with business function.'
   },
   {
     number: '02',
-    title: 'Conceptual Design & Engineering',
-    description: 'Our designers translate strategy into tangible forms, exploring structural innovation alongside visual identity. We rigorously engineer every dieline and fold to ensure structural integrity matches aesthetic elegance.'
+    title: 'Structural Engineering',
+    icon: <PenTool size={32} />,
+    description: 'Form follows physics. Our engineers develop custom CAD dielines, focusing on material efficiency, folding mechanics, and unboxing ergonomics.'
   },
   {
     number: '03',
-    title: 'Prototyping & Material Finalization',
-    description: 'We produce physical prototypes using production-grade materials to verify fit, finish, and unboxing functionality. This hands-on refinement stage guarantees that the final output feels as premium as it looks.'
+    title: 'Material Prototyping',
+    icon: <Box size={32} />,
+    description: 'Tangible verification. We produce physical samples using production-grade stocks to test weight, texture, and structural integrity before mass manufacturing.'
   },
   {
     number: '04',
-    title: 'Production Management & Launch',
-    description: 'We oversee the full transition from digital file to physical product, managing trusted vendors globally to ensure seamless execution. Our rigorous quality control checks and logistics oversight guarantee that the premium materials and intricate designs are produced perfectly and delivered on time, ready for your market launch.'
+    title: 'Production & Logistics',
+    icon: <Truck size={32} />,
+    description: 'Global execution. From press checks to final assembly, we manage the entire supply chain, ensuring your packaging arrives pristine and on schedule.'
   }
 ];
 
 export const Process: React.FC = () => {
   return (
-    <section id="process" className="py-24 md:py-32 bg-white relative overflow-hidden">
-      {/* Die-cut Dashed Line */}
-      <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-px border-l-2 border-dashed border-gray-200 hidden md:flex flex-col items-center">
-         <div className="bg-white p-2 absolute top-0 -translate-x-1/2 z-10 text-gray-300">
-            <Scissors size={20} className="rotate-180" />
-         </div>
+    <section id="process" className="py-32 bg-paper-black text-white relative overflow-hidden">
+      {/* Background Technical Grid */}
+      <div className="absolute inset-0 z-0 opacity-[0.03]" style={{ 
+          backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', 
+          backgroundSize: '40px 40px' 
+        }}>
       </div>
 
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-6 relative z-10">
         <FadeIn>
-          <div className="mb-20 text-center relative z-10">
-            <h2 className="text-sm font-bold tracking-[0.2em] uppercase text-gray-400 mb-4">The Journey</h2>
-            <h3 className="font-serif text-4xl md:text-5xl text-paper-black">
-              From abstraction to reality.
-            </h3>
+          <div className="mb-24 flex flex-col md:flex-row md:items-end justify-between gap-8">
+            <div>
+               <div className="flex items-center gap-2 mb-4">
+                  <div className="w-2 h-2 bg-paper-gold rounded-full animate-pulse"></div>
+                  <span className="text-paper-gold font-mono text-xs uppercase tracking-widest">Workflow Sequence</span>
+               </div>
+               <h2 className="font-serif text-5xl md:text-7xl font-black uppercase leading-none">
+                 The Production <br/> <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-500 to-white">Protocol.</span>
+               </h2>
+            </div>
+            <p className="text-gray-400 max-w-md text-lg leading-relaxed font-light border-l-2 border-paper-gold pl-6">
+               A rigorous, four-stage methodology designed to mitigate risk and maximize impact.
+            </p>
           </div>
         </FadeIn>
 
-        <div className="relative max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-gray-800 border-2 border-gray-800">
           {steps.map((step, index) => (
-            <FadeIn key={step.number} delay={index * 100}>
-              <div className={`flex flex-col md:flex-row items-start md:items-center gap-8 md:gap-24 mb-20 md:mb-32 last:mb-0 relative z-10 ${index % 2 !== 0 ? 'md:flex-row-reverse text-left md:text-right' : 'text-left'}`}>
+            <FadeIn key={step.number} delay={index * 100} className="h-full">
+              <div className="relative h-full bg-paper-black p-10 md:p-14 group hover:bg-gray-900 transition-colors duration-500 overflow-hidden">
+                {/* Hover Accent */}
+                <div className="absolute top-0 right-0 w-20 h-20 bg-paper-gold/10 rounded-bl-full transform translate-x-10 -translate-y-10 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-500"></div>
                 
-                {/* Step Number - Mobile: Top, Desktop: Center aligned */}
-                <div className="md:w-1/2 flex md:justify-end text-8xl font-serif text-paper-cream font-bold leading-none select-none absolute md:relative -z-10 -top-8 left-0 opacity-50 md:opacity-100 md:text-gray-100">
-                  <div className={`${index % 2 !== 0 ? 'md:mr-auto md:ml-0' : 'md:ml-auto md:mr-0'}`}>
-                    {step.number}
-                  </div>
+                <div className="flex justify-between items-start mb-10">
+                   <div className="text-paper-gold opacity-50 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500">
+                      {step.icon}
+                   </div>
+                   <span className="font-mono text-4xl md:text-5xl font-bold text-gray-800 group-hover:text-gray-700 transition-colors">
+                      {step.number}
+                   </span>
                 </div>
 
-                {/* Content */}
-                <div className="md:w-1/2 pt-6 md:pt-0">
-                  <h4 className="font-serif text-2xl md:text-3xl text-paper-black mb-4">
-                    {step.title}
-                  </h4>
-                  <div className={`h-1 w-12 bg-paper-gold mb-6 ${index % 2 !== 0 ? 'md:ml-auto' : ''}`}></div>
-                  <p className="text-gray-600 leading-relaxed text-lg font-light">
-                    {step.description}
-                  </p>
-                </div>
+                <h3 className="font-serif text-3xl text-white mb-6 uppercase tracking-wide group-hover:text-paper-gold transition-colors">
+                   {step.title}
+                </h3>
+                
+                <p className="text-gray-400 leading-relaxed font-light">
+                   {step.description}
+                </p>
+
+                {/* Bottom decorative line */}
+                <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-paper-black via-paper-black to-paper-black group-hover:via-paper-gold transition-all duration-700"></div>
               </div>
             </FadeIn>
           ))}

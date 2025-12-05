@@ -35,9 +35,13 @@ export const FeaturedProject: React.FC = () => {
                 <FadeIn>
                     <div className="mb-20">
                         <span className="text-xs font-bold tracking-[0.2em] uppercase text-paper-gold mb-6 block">Featured Engineering</span>
-                        <h2 className="font-serif text-5xl md:text-6xl text-paper-black leading-none mb-6">
+                        <h2 className="font-serif text-5xl md:text-6xl text-paper-black leading-none mb-4">
                             Aeris <br/> Botanicals
                         </h2>
+                        {/* Explicit Packaging Type Label */}
+                        <span className="inline-block text-sm font-bold tracking-[0.2em] text-paper-secondary uppercase border border-paper-secondary px-3 py-1 mb-6">
+                           (SUSPENSION INSERT SYSTEM)
+                        </span>
                         <div className="w-12 h-1 bg-paper-black"></div>
                     </div>
                 </FadeIn>

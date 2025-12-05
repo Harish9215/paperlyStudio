@@ -1,9 +1,49 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { generateDesignConcepts } from '../services/geminiService';
 import { DesignConcept } from '../types';
 import { Button } from './Button';
 import { Sparkles, Loader2, Info, Box, Ruler, Layers } from 'lucide-react';
 import { FadeIn } from './FadeIn';
+
+// Helper Component for Typewriter Effect
+const TypewriterText = ({ text, delay = 0, speed = 15 }: { text: string; delay?: number; speed?: number }) => {
+  const [display, setDisplay] = useState('');
+  const [hasStarted, setHasStarted] = useState(false);
+
+  useEffect(() => {
+    const startTimeout = setTimeout(() => {
+      setHasStarted(true);
+    }, delay);
+    return () => clearTimeout(startTimeout);
+  }, [delay]);
+
+  useEffect(() => {
+    if (!hasStarted) return;
+    
+    let i = 0;
+    const intervalId = setInterval(() => {
+      setDisplay((prev) => {
+        if (i >= text.length) {
+          clearInterval(intervalId);
+          return text;
+        }
+        i++;
+        return text.substring(0, i);
+      });
+    }, speed);
+
+    return () => clearInterval(intervalId);
+  }, [text, hasStarted, speed]);
+
+  return (
+    <span>
+      {display}
+      {hasStarted && display.length < text.length && (
+        <span className="inline-block w-2 h-4 bg-paper-gold ml-1 animate-pulse align-middle"></span>
+      )}
+    </span>
+  );
+};
 
 export const AIConsultant: React.FC = () => {
   const [productName, setProductName] = useState('');
@@ -133,7 +173,7 @@ export const AIConsultant: React.FC = () => {
                    </div>
                    
                    {concepts.map((concept, idx) => (
-                     <div key={idx} className="bg-paper-black relative group">
+                     <div key={idx} className="bg-paper-black relative group animate-fade-in-up" style={{ animationDelay: `${idx * 200}ms` }}>
                        {/* Card Header */}
                        <div className="bg-white text-paper-black p-4 flex justify-between items-center">
                           <h4 className="font-serif text-xl font-bold uppercase">{concept.conceptName}</h4>
@@ -146,7 +186,9 @@ export const AIConsultant: React.FC = () => {
                             <Layers className="text-paper-gold mt-1" size={18} />
                             <div>
                               <p className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2 font-serif">Visual Language</p>
-                              <p className="text-gray-200 text-sm leading-relaxed">{concept.visualStyle}</p>
+                              <p className="text-gray-200 text-sm leading-relaxed">
+                                <TypewriterText text={concept.visualStyle} delay={idx * 800 + 200} />
+                              </p>
                             </div>
                           </div>
 
@@ -154,7 +196,9 @@ export const AIConsultant: React.FC = () => {
                             <Box className="text-paper-gold mt-1" size={18} />
                             <div>
                               <p className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2 font-serif">Material Composition</p>
-                              <p className="text-gray-200 text-sm leading-relaxed">{concept.materials}</p>
+                              <p className="text-gray-200 text-sm leading-relaxed">
+                                <TypewriterText text={concept.materials} delay={idx * 800 + 400} />
+                              </p>
                             </div>
                           </div>
 
@@ -162,7 +206,9 @@ export const AIConsultant: React.FC = () => {
                             <Ruler className="text-paper-gold mt-1" size={18} />
                             <div>
                               <p className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-2 font-serif">Interaction Flow</p>
-                              <p className="text-gray-200 text-sm leading-relaxed">{concept.unboxingExperience}</p>
+                              <p className="text-gray-200 text-sm leading-relaxed">
+                                <TypewriterText text={concept.unboxingExperience} delay={idx * 800 + 600} />
+                              </p>
                             </div>
                           </div>
                        </div>

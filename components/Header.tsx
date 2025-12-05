@@ -21,7 +21,6 @@ export const Header: React.FC<HeaderProps> = ({ onNavigate }) => {
     { name: 'Services', value: 'partnerships' },
     { name: 'Process', value: 'process' },
     { name: 'Portfolio', value: 'portfolio' },
-    { name: 'Philosophy', value: 'philosophy' },
     { name: 'Consultation', value: 'consultation' },
   ];
 

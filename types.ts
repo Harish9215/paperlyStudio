@@ -7,6 +7,7 @@ export interface PortfolioItem {
   imageUrl: string;
   challenge: string;
   solution: string;
+  galleryImages: string[];
 }
 
 export interface ServiceItem {

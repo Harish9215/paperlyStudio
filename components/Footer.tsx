@@ -1,5 +1,5 @@
 import React from 'react';
-import { Instagram, Linkedin, Twitter, ArrowRight } from 'lucide-react';
+import { Instagram, Linkedin, Twitter, ArrowRight, ArrowUp } from 'lucide-react';
 import { Button } from './Button';
 
 export const Footer: React.FC = () => {
@@ -9,6 +9,10 @@ export const Footer: React.FC = () => {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
@@ -40,7 +44,7 @@ export const Footer: React.FC = () => {
       </div>
 
       {/* Bottom Bar */}
-      <div className="container mx-auto px-6 py-12 flex flex-col md:flex-row justify-between items-center relative z-10">
+      <div className="container mx-auto px-6 py-12 flex flex-col md:flex-row justify-between items-center relative z-10 gap-8">
         <div className="mb-8 md:mb-0 text-center md:text-left">
           <a href="#" className="font-serif text-2xl font-black tracking-tight text-paper-black block mb-2">
             Paperly Studio
@@ -50,14 +54,26 @@ export const Footer: React.FC = () => {
           </p>
         </div>
 
-        <div className="flex space-x-6 text-paper-black mb-8 md:mb-0">
+        <div className="flex space-x-6 text-paper-black">
           <a href="#" className="hover:text-paper-secondary transition-colors transform hover:-translate-y-1 duration-300"><Instagram size={24} /></a>
           <a href="#" className="hover:text-paper-secondary transition-colors transform hover:-translate-y-1 duration-300"><Twitter size={24} /></a>
           <a href="#" className="hover:text-paper-secondary transition-colors transform hover:-translate-y-1 duration-300"><Linkedin size={24} /></a>
         </div>
 
-        <div className="text-xs text-gray-400 font-bold tracking-wide uppercase">
-          © {new Date().getFullYear()} Paperly Studio. All rights reserved.
+        {/* Back to Top & Copyright */}
+        <div className="flex flex-col items-center md:items-end gap-4">
+           <button 
+             onClick={scrollToTop}
+             className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-paper-black hover:text-paper-gold transition-colors group"
+           >
+             Back to Top
+             <div className="w-8 h-8 border border-paper-black rounded-full flex items-center justify-center group-hover:bg-paper-black group-hover:text-white transition-all">
+                <ArrowUp size={14} />
+             </div>
+           </button>
+           <div className="text-xs text-gray-400 font-bold tracking-wide uppercase">
+             © {new Date().getFullYear()} Paperly Studio. All rights reserved.
+           </div>
         </div>
       </div>
     </footer>
