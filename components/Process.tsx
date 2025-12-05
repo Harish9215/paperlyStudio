@@ -1,92 +1,119 @@
 import React from 'react';
 import { FadeIn } from './FadeIn';
-import { GitCommit, PenTool, Box, Truck } from 'lucide-react';
+import { Button } from './Button';
 
 const steps = [
   {
     number: '01',
-    title: 'Discovery & Strategy',
-    icon: <GitCommit size={32} />,
-    description: 'We decode your brand DNA. Through market analysis and aesthetic auditing, we define a strategic roadmap that aligns structural form with business function.'
+    phase: 'Discovery',
+    title: 'Strategy & Insight',
+    duration: '1–2 Weeks',
+    description: 'We decode your brand DNA. Through market analysis and aesthetic auditing, we define a strategic roadmap that aligns form with function.',
+    specs: ['Audit', 'Market Analysis', 'Concept Roadmap']
   },
   {
     number: '02',
-    title: 'Structural Engineering',
-    icon: <PenTool size={32} />,
-    description: 'Form follows physics. Our engineers develop custom CAD dielines, focusing on material efficiency, folding mechanics, and unboxing ergonomics.'
+    phase: 'Engineering',
+    title: 'Structure Design',
+    duration: '2–3 Weeks',
+    description: 'Form follows physics. Our engineers develop custom CAD dielines, focusing on material efficiency, folding mechanics, and ergonomics.',
+    specs: ['CAD Dielines', '3D Rendering', 'Fit Testing']
   },
   {
     number: '03',
-    title: 'Material Prototyping',
-    icon: <Box size={32} />,
-    description: 'Tangible verification. We produce physical samples using production-grade stocks to test weight, texture, and structural integrity before mass manufacturing.'
+    phase: 'Prototyping',
+    title: 'Material Proofing',
+    duration: '2–4 Weeks',
+    description: 'Tangible verification. We produce physical samples using production-grade stocks to test weight, texture, and structural integrity.',
+    specs: ['White Samples', 'Material Sourcing', 'Finish Proofing']
   },
   {
     number: '04',
-    title: 'Production & Logistics',
-    icon: <Truck size={32} />,
-    description: 'Global execution. From press checks to final assembly, we manage the entire supply chain, ensuring your packaging arrives pristine and on schedule.'
+    phase: 'Production',
+    title: 'Global Logistics',
+    duration: 'Ongoing',
+    description: 'Global execution. From press checks to final assembly, we manage the entire supply chain ensuring your packaging arrives pristine.',
+    specs: ['QC/QA', 'Assembly', 'Global Freight']
   }
 ];
 
 export const Process: React.FC = () => {
-  return (
-    <section id="process" className="py-32 bg-paper-black text-white relative overflow-hidden">
-      {/* Background Technical Grid */}
-      <div className="absolute inset-0 z-0 opacity-[0.03]" style={{ 
-          backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', 
-          backgroundSize: '40px 40px' 
-        }}>
-      </div>
+  const scrollToConsultation = () => {
+    const element = document.getElementById('consultation');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
+  return (
+    <section id="process" className="py-32 bg-paper-black text-white relative min-h-screen flex flex-col justify-center">
+      
       <div className="container mx-auto px-6 relative z-10">
         <FadeIn>
-          <div className="mb-24 flex flex-col md:flex-row md:items-end justify-between gap-8">
-            <div>
-               <div className="flex items-center gap-2 mb-4">
-                  <div className="w-2 h-2 bg-paper-gold rounded-full animate-pulse"></div>
-                  <span className="text-paper-gold font-mono text-xs uppercase tracking-widest">Workflow Sequence</span>
-               </div>
-               <h2 className="font-serif text-5xl md:text-7xl font-black uppercase leading-none">
-                 The Production <br/> <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-500 to-white">Protocol.</span>
+          <div className="mb-24 text-center max-w-4xl mx-auto">
+               <span className="text-paper-gold font-bold tracking-[0.2em] uppercase text-xs md:text-sm mb-4 block">The Methodology</span>
+               <h2 className="font-serif text-5xl md:text-7xl font-medium text-white mb-8">
+                 From Abstract to <span className="text-gray-500 italic font-serif">Concrete.</span>
                </h2>
-            </div>
-            <p className="text-gray-400 max-w-md text-lg leading-relaxed font-light border-l-2 border-paper-gold pl-6">
-               A rigorous, four-stage methodology designed to mitigate risk and maximize impact.
-            </p>
+               <p className="text-gray-300 text-xl font-light leading-relaxed max-w-2xl mx-auto">
+                 A refined workflow designed for clarity, precision, and excellence.
+               </p>
           </div>
         </FadeIn>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-gray-800 border-2 border-gray-800">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16">
           {steps.map((step, index) => (
-            <FadeIn key={step.number} delay={index * 100} className="h-full">
-              <div className="relative h-full bg-paper-black p-10 md:p-14 group hover:bg-gray-900 transition-colors duration-500 overflow-hidden">
-                {/* Hover Accent */}
-                <div className="absolute top-0 right-0 w-20 h-20 bg-paper-gold/10 rounded-bl-full transform translate-x-10 -translate-y-10 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-500"></div>
-                
-                <div className="flex justify-between items-start mb-10">
-                   <div className="text-paper-gold opacity-50 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500">
-                      {step.icon}
-                   </div>
-                   <span className="font-mono text-4xl md:text-5xl font-bold text-gray-800 group-hover:text-gray-700 transition-colors">
-                      {step.number}
-                   </span>
-                </div>
+            <FadeIn key={index} delay={index * 100} className="h-full">
+              <div className="group relative h-full flex flex-col border-t border-gray-800 pt-8 hover:border-paper-gold transition-colors duration-500">
+                 
+                 {/* Header */}
+                 <div className="flex justify-between items-baseline mb-6">
+                    <span className="text-5xl font-serif font-medium text-paper-gold/80">{step.number}</span>
+                    <span className="text-xs font-bold uppercase tracking-widest text-gray-500">{step.phase}</span>
+                 </div>
 
-                <h3 className="font-serif text-3xl text-white mb-6 uppercase tracking-wide group-hover:text-paper-gold transition-colors">
-                   {step.title}
-                </h3>
-                
-                <p className="text-gray-400 leading-relaxed font-light">
-                   {step.description}
-                </p>
+                 {/* Title */}
+                 <h3 className="font-serif text-3xl text-white mb-6 leading-none group-hover:text-paper-gold transition-colors duration-300">
+                    {step.title}
+                 </h3>
 
-                {/* Bottom decorative line */}
-                <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-paper-black via-paper-black to-paper-black group-hover:via-paper-gold transition-all duration-700"></div>
+                 {/* Description - Increased Contrast & Size */}
+                 <p className="text-gray-300 text-lg leading-relaxed font-light mb-8 flex-grow">
+                    {step.description}
+                 </p>
+
+                 {/* Specs - Simplified List */}
+                 <div className="space-y-3 border-t border-gray-800 pt-6">
+                    {step.specs.map((spec, i) => (
+                      <div key={i} className="flex items-center text-sm font-bold text-gray-500 uppercase tracking-wider group-hover:text-gray-300 transition-colors">
+                          <span className="w-1.5 h-1.5 bg-paper-gold rounded-full mr-3"></span>
+                          {spec}
+                      </div>
+                    ))}
+                 </div>
+                 
+                 <div className="mt-6 pt-4 text-xs font-mono text-gray-600 uppercase tracking-widest">
+                    Est. {step.duration}
+                 </div>
               </div>
             </FadeIn>
           ))}
         </div>
+
+        <FadeIn delay={500}>
+            <div className="mt-24 flex justify-center">
+                <Button 
+                    onClick={scrollToConsultation} 
+                    variant="primary" 
+                    className="bg-white hover:bg-white border-none px-12 py-4 text-lg min-w-[200px]"
+                    fillClassName="bg-paper-gold"
+                >
+                    <span className="relative z-10 text-paper-black font-bold tracking-widest uppercase group-hover:text-white transition-colors duration-300">
+                        Initiate Project
+                    </span>
+                </Button>
+            </div>
+        </FadeIn>
       </div>
     </section>
   );

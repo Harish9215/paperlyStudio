@@ -13,9 +13,12 @@ const portfolioItems: (PortfolioItem & { aspect: string })[] = [
     solution: 'Food-safe, grease-resistant barriers with high-clarity windows designed for artisanal presentation.',
     aspect: 'aspect-[4/5]',
     galleryImages: [
-      'https://images.unsplash.com/photo-1595246140625-573b715d11dc?q=80&w=800&auto=format&fit=crop', // Close up texture
-      'https://images.unsplash.com/photo-1583336663277-620dc1996580?q=80&w=800&auto=format&fit=crop', // Stacked
-      'https://images.unsplash.com/photo-1627483298423-03e2e9871fae?q=80&w=800&auto=format&fit=crop', // Lifestyle
+      'https://i.pinimg.com/736x/cb/4f/ef/cb4fef2e378f38c7ebbb1843ca4a32c2.jpg?q=80&w=800&auto=format&fit=crop', 
+      'https://i.pinimg.com/1200x/b0/07/50/b00750469f5653ee596274dc4fae2bb1.jpg?q=80&w=800&auto=format&fit=crop', 
+      'https://i.pinimg.com/736x/2b/31/17/2b31179c3f8d98a08e5e4274a4a4049b.jpg?q=80&w=800&auto=format&fit=crop',
+      'https://i.pinimg.com/736x/09/cf/bb/09cfbbe09f4561438721c9cc46d11ed3.jpg?q=80&w=800&auto=format&fit=crop',
+      'https://i.pinimg.com/1200x/36/97/21/369721efa7a7f6bb67b61dc9b6f87e55.jpg?q=80&w=800&auto=format&fit=crop'
+
     ]
   },
   {
